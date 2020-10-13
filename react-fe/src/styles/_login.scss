@@ -1,0 +1,18 @@
+.button_LogIn, .button_SignUp {
+    width: rem-calc(300px);
+    height: rem-calc(30px);
+
+    text-align: center;
+     
+    margin: rem-calc(10px) rem-calc(15px) rem-calc(10px) rem-calc(15px);
+
+    font-size: rem-clac(20px);
+}
+
+.button_SignUp {
+    background-color: $pa-grey;
+    color: $white;
+    border: none;
+}
+
+
