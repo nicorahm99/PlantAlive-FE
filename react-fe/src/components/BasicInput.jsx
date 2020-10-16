@@ -15,10 +15,10 @@ export default function BasicInput(props) {
     )
 };
 
-// BasicInput.PropTypes = {
-//     iconName: PropTypes.string,
-//     isVisible: PropTypes.bool,
-//     placeholder: PropTypes.string,
-//     onChange: PropTypes.func,
-//     value: PropTypes.string
-// };
+BasicInput.propTypes = {
+    iconName: PropTypes.string,
+    isVisible: PropTypes.bool,
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func,
+    value: PropTypes.string
+};

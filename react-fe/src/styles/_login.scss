@@ -1,12 +1,38 @@
+.pageLogin {
+    width: 100%;
+    &_Logo {
+        max-height: rem-calc(200px);
+        text-align: center;
+        padding-right: 10%;
+        margin: rem-calc(50px);
+    }
+
+    &_flexContainer{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    &_Form {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-flow: wrap;
+        justify-content: space-around;
+        align-items: stretch;
+    }
+}
+
 .button_LogIn, .button_SignUp {
     width: rem-calc(300px);
-    height: rem-calc(30px);
+    height: rem-calc(40px);
 
     text-align: center;
      
     margin: rem-calc(10px) rem-calc(15px) rem-calc(10px) rem-calc(15px);
 
-    font-size: rem-clac(20px);
+    font-size: 1.5rem;
 }
 
 .button_SignUp {

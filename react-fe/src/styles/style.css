@@ -1,6 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
 body {
   font-family: 'Teko', sans-serif;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  overflow: -moz-scrollbars-none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.BG1, .BG2 {
+  position: fixed;
+  width: 150%;
+  height: 10%;
+  right: -50%;
+  bottom: 10%;
+  background: #31572C;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  z-index: -1;
+}
+
+.BG2 {
+  height: 50%;
+  right: -50%;
+  bottom: -54%;
 }
 
 .inputFormItem {
@@ -39,7 +68,7 @@ body {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .button_Basic {
@@ -393,12 +422,55 @@ template {
   display: none;
 }
 
+.pageLogin {
+  width: 100%;
+}
+
+.pageLogin_Logo {
+  max-height: 12.5rem;
+  text-align: center;
+  padding-right: 10%;
+  margin: 3.125rem;
+}
+
+.pageLogin_flexContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.pageLogin_Form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
 .button_LogIn, .button_SignUp {
   width: 18.75rem;
-  height: 1.875rem;
+  height: 2.5rem;
   text-align: center;
   margin: 0.625rem 0.9375rem 0.625rem 0.9375rem;
-  font-size: rem-clac(20px);
+  font-size: 1.5rem;
 }
 
 .button_SignUp {

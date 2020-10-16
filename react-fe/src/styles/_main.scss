@@ -2,6 +2,31 @@
 
 body {
     font-family: 'Teko', sans-serif;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+    overflow: -moz-scrollbars-none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+}
+.BG1, .BG2 {
+    position: fixed;
+    width: 150%;
+    height: 10%;
+    right: -50%;
+    bottom: 10%;
+    background: #31572C;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: rotate(-45deg);
+    z-index: -1;
+}
+
+.BG2 {
+    height: 50%;
+    right: -50%;
+    bottom: -54%;
 }
 
 .inputFormItem {
@@ -30,7 +55,7 @@ body {
         height: 22px;
         border: none;
         align-self: center;
-        font-size: rem-calc(20px);
+        font-size: 1.5rem;
     }
 }
 
