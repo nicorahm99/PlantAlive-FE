@@ -26,18 +26,10 @@ body, .App, #root {
 }
 
 .inputFormItem {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   height: 2.5rem;
   width: 18.75rem;
   background-color: rgba(0, 0, 0, 0);
-  border-bottom: 2px solid #000000;
-  margin: 1rem;
+  margin: 1rem 1rem 2rem 1rem;
 }
 
 .inputFormItem_Icon {
@@ -86,6 +78,18 @@ body, .App, #root {
   padding: 0 3rem;
   -webkit-animation: fadeIn ease 250ms;
           animation: fadeIn ease 250ms;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: black !important;
+}
+
+.MuiInput-underline {
+  width: 300px !important;
+}
+
+.MuiInput-underline:after {
+  border: 1px solid black !important;
 }
 
 @media (max-width: 800px) {

@@ -25,16 +25,12 @@ body, .App, #root{
 }
 
 .inputFormItem {
-    display: flex;
-    flex-direction: row;
-
     height: rem-calc(40px);
     width: rem-calc(300px);
 
     background-color: $transparent;
-    border-bottom: 2px solid $black;
 
-    margin: 1rem;
+    margin: 1rem 1rem 2rem 1rem;
 
     &_Icon{
         order: 0;
@@ -70,6 +66,17 @@ body, .App, #root{
     justify-content: center;
     padding: 0 3rem;
     animation: fadeIn ease 250ms;
+}
+
+.MuiFormLabel-root.Mui-focused {
+    color: black !important; 
+}
+
+.MuiInput-underline{
+    width: 300px !important;
+    &:after{
+        border: 1px solid black !important;
+    }
 }
 
 @media(max-width:800px) {
