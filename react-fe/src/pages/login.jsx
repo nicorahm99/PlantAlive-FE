@@ -3,9 +3,11 @@ import Background from '../components/Background.jsx';
 import BasicButton from '../components/BasicButton.jsx';
 import BasicInput from '../components/BasicInput.jsx';
 import Icon from '../components/Icon.jsx';
+import {useHistory} from 'react-router-dom';
 
 export default function Login() {
-	
+	const history = useHistory();
+
 	const [ userMail, setUserMail ] = React.useState('');
 	const [ password, setPassword ] = React.useState('');
 	const [ repeatPassword, setRepeatPassword ] = React.useState('');
@@ -41,16 +43,20 @@ export default function Login() {
 	}
 
 	function onFormSubmit(event) {
+		console.log('hello')
 		event.preventDefault()
 		if (validateLogin()) {
 		// @TODO check for account
+			history.push('/home')
 		}
 	}
 	
 	function onSignUpButtonClicked() {
+		console.log('hello')
 		if(isRepeatPasswordDisplayed){
 			if (validateSignup()){
 				// @Todo create Account	
+				history.push('/home')
 			}
 			
 		} else {
@@ -59,34 +65,36 @@ export default function Login() {
 	}
 
 	function validateLogin() {
-		let hasErrors = false;
+		let isValid = true;
 		
 		if (!validateEmail()) {
 			setMailHelperText('z.B. \"mail@example.org\"');
 			setIsMailError(true);
-			hasErrors = true
+			isValid = false
+			console.log('Mail-wrong')
 		}
 		if (!validatePassword()) {
 			setPasswordHelperText('Mind. 8 Zeichen');
 			setIsPasswordError(true);
-			hasErrors = true
+			isValid = false
+			console.log('PW-invalid')
 		}
-		return hasErrors
+		return isValid
 	}
 
 	function validateSignup() {
-		let hasErrors = validateLogin();
+		let isValid = validateLogin();
 		if (!validateRepeatPassword()) {
 			setRepeatPasswordHelperText('Passwörter Stimmen nicht überein!');
 			setIsRepeatPasswordError(true);
-			hasErrors = true
+			isValid = false
+			console.log('PWs-differ')
 		}
-		return hasErrors
+		return isValid
 	}
 
 	function validateEmail(){
 		const mailFormat = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-		console.log(mailFormat.test(userMail.toLowerCase))
 		return userMail.match(mailFormat)
 	}
 
@@ -105,8 +113,8 @@ return (
 		<Icon iconName="LOGO"
 			className="pageLogin_Logo" />
 		<div className="pageLogin_divider" />
-		<form onSubmit={onFormSubmit}
-			className="pageLogin_Form">
+		<div className="pageLogin_Form"> 
+		<form onSubmit={onFormSubmit} >
 			<BasicInput className="userNameForm"
 				iconName="mail"
 				isVisible={true}
@@ -139,10 +147,11 @@ return (
 			<BasicButton text="Log IN"
 				className="button_LogIn"
 				onClick={onFormSubmit} />
+		</form>
 			<BasicButton text="Sign UP"
 				className="button_SignUp"
 				onClick={onSignUpButtonClicked} />
-		</form>
+		</div>
 		<Background />
 	</div>
 )

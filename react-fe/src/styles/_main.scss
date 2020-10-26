@@ -3,8 +3,16 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 body, .App, #root{
-    font-family: 'Teko', sans-serif;
+    font-family: 'Teko', sans-serif !important;
     min-height: 100vh;
+}
+
+.MuiTypography-body1, .MuiTypography-h4{
+    font-family: 'Teko', sans-serif !important;
+}
+
+.MuiTypography-body1{
+    font-size: 1.5rem !important;
 }
 
 .BG1, .BG2 {
@@ -56,6 +64,10 @@ body, .App, #root{
     border: 2px solid $black;
     font-size: 20;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.AppBar_Icon img{
+    max-height: 2.5rem;
 }
 
 .Universal_Bottom_centered_Hint_Container{
