@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../assets/Plantalive_logo.svg'
 
 export default function Icon(props) {
     return (
@@ -22,7 +23,8 @@ export default function Icon(props) {
             case "back":
                 return (<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 240.823 240.823" style="enable-background:new 0 0 240.823 240.823;"> <g> <path id="Chevron_Right" d="M57.633,129.007L165.93,237.268c4.752,4.74,12.451,4.74,17.215,0c4.752-4.74,4.752-12.439,0-17.179 l-99.707-99.671l99.695-99.671c4.752-4.74,4.752-12.439,0-17.191c-4.752-4.74-12.463-4.74-17.215,0L57.621,111.816 C52.942,116.507,52.942,124.327,57.633,129.007z" /> </g> </svg>);
             case "LOGO": 
-                return (<svg width="201" height="206" viewBox="0 0 201 206" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M81.7832 203.557V47.2638C81.7832 27.7808 98.7093 14.7748 140.224 15.003C181.74 15.2374 185.205 51.8054 185.205 68.1621C185.205 84.5187 172.938 117.232 132.046 117.232H107.511" stroke="black" stroke-width="30"/> <path d="M0 27.4503V50.4518C0 69.9147 18.8731 88.7877 38.3359 88.7877H61.3374V65.7862C61.3374 46.3233 42.4644 27.4503 23.0015 27.4503H0Z" fill="url(#paint0_linear)"/> <path d="M179.923 203.557V151.216H159.477C147.21 151.216 130.853 150.398 130.853 171.661C130.853 192.925 147.21 192.107 155.388 192.107H159.477" stroke="black" stroke-width="27"/> <path d="M20 109V124.334C20 137.31 32.582 149.892 45.5573 149.892H60.8916V134.557C60.8916 121.582 48.3096 109 35.3344 109H20Z" fill="url(#paint1_linear)"/> <path d="M41 170V177.667C41 184.155 47.291 190.446 53.7786 190.446H61.4458V182.779C61.4458 176.291 55.1548 170 48.6672 170H41Z" fill="url(#paint2_linear)"/> <defs> <linearGradient id="paint0_linear" x1="-1.4353e-06" y1="27.4503" x2="61.3374" y2="88.7877" gradientUnits="userSpaceOnUse"> <stop stop-color="#4F772D"/> <stop offset="0.509192" stop-color="#31572C"/> <stop offset="1" stop-color="#132A13"/> </linearGradient> <linearGradient id="paint1_linear" x1="20" y1="109" x2="60.8916" y2="149.892" gradientUnits="userSpaceOnUse"> <stop stop-color="#4F772D"/> <stop offset="0.509192" stop-color="#31572C"/> <stop offset="1" stop-color="#132A13"/> </linearGradient> <linearGradient id="paint2_linear" x1="41" y1="170" x2="61.4458" y2="190.446" gradientUnits="userSpaceOnUse"> <stop stop-color="#4F772D"/> <stop offset="0.509192" stop-color="#31572C"/> <stop offset="1" stop-color="#132A13"/> </linearGradient> </defs> </svg> )
+                return (<img src={logo} alt="Logo" />);
+    
         }
     }
 }
