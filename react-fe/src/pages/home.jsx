@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Icon from '../components/Icon';
 import Background from '../components/Background';
+import PlantCard from '../components/PlantCard';
 
 const drawerWidth = 240;
 
@@ -32,10 +33,11 @@ const useStyles = makeStyles((theme) => ({
     appBar: {
         color:'#000000',
         backgroundColor: '#31572C',
-        [theme.breakpoints.up('sm')]: {
-            width: `calc(100% - ${drawerWidth}px)`,
-            marginLeft: drawerWidth,
-        },
+        zIndex: theme.zIndex.drawer + 1,
+        // [theme.breakpoints.up('md')]: {
+        //     width: `calc(100%)`,
+        //     // marginLeft: drawerWidth,
+        // },
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -44,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     // necessary for content to be below app bar
-    toolbar: theme.mixins.toolbar,
     drawerPaper: {
         width: drawerWidth,
     },
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
     },
     toolbar:{
+        ...theme.mixins.toolbar,
         justifyContent: 'space-between',
     }   
 }));
@@ -62,6 +64,8 @@ export default function Home(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  // const [plants, setPlants] = React.useState([]);
+  const testArray = Array.from(Array(15).keys())
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -72,7 +76,6 @@ export default function Home(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-
         <ListItem button key='Home' >
           <ListItemIcon><Icon iconName="home"/></ListItemIcon>
           <ListItemText primary='Home'/>
@@ -113,16 +116,15 @@ export default function Home(props) {
           <Icon iconName="LOGO" className="AppBar_Icon" />
         </Toolbar>
       </AppBar>
+      
       <nav className={classes.drawer} aria-label="menu">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <SwipableDrawer
-            onOpen={()=>setMobileOpen(true)}
-            onClose={()=>setMobileOpen(false)}
             container={container}
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
+            onOpen={handleDrawerToggle}
             onClose={handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper,
@@ -141,26 +143,37 @@ export default function Home(props) {
             }}
             variant="permanent"
             open
+            onOpen={() => null}
+            onClose={() => null}
           >
             {drawer}
           </SwipableDrawer>
         </Hidden>
       </nav>
+
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
-          Inhalt
-        </Typography>
+        <div className="pageHome_cardContainer">
+          {testArray.map(() => {
+            return mockPlantCard()
+          })}
+        </div>
       </main>
       <Background />
     </div>
   );
 }
 
+const mockPlantCard = () => {
+  return (<PlantCard 
+    src="../assets/samplePlant.svg" 
+    location="Wohnzimmer" 
+    plantName="Schefflera"
+    humidity={80} 
+    temperature={21}
+  />)
+}
+
 Home.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };

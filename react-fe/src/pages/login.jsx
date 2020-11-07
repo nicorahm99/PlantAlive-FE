@@ -94,6 +94,7 @@ export default function Login() {
 	}
 
 	function validateEmail(){
+		// eslint-disable-next-line
 		const mailFormat = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 		return userMail.match(mailFormat)
 	}
