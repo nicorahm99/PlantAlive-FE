@@ -66,6 +66,17 @@ body, .App, #root{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.basicInput{
+    &_icon{
+        min-width: 1.5rem;
+    }
+}
+
+.basicFrame{
+    background: $white;
+    border: 1px solid #000000;
+}
+
 .AppBar_Icon img{
     max-height: 2.5rem;
 }
@@ -78,6 +89,14 @@ body, .App, #root{
     justify-content: center;
     padding: 0 3rem;
     animation: fadeIn ease 250ms;
+}
+
+.universal_flexRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2rem;
+    align-items: center;
 }
 
 .MuiFormLabel-root.Mui-focused {

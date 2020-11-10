@@ -73,6 +73,15 @@ body, .App, #root {
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.basicInput_icon {
+  min-width: 1.5rem;
+}
+
+.basicFrame {
+  background: #FFFFFF;
+  border: 1px solid #000000;
+}
+
 .AppBar_Icon img {
   max-height: 2.5rem;
 }
@@ -90,6 +99,23 @@ body, .App, #root {
   padding: 0 3rem;
   -webkit-animation: fadeIn ease 250ms;
           animation: fadeIn ease 250ms;
+}
+
+.universal_flexRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .MuiFormLabel-root.Mui-focused {
@@ -302,6 +328,10 @@ textarea {
   /* 1 */
   margin: 0;
   /* 2 */
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
 }
 
 /**
@@ -576,10 +606,10 @@ template {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 1rem;
 }
 
 .PlantCard_frame {
+  margin-bottom: 1rem;
   border: 1px solid #000000;
   display: -ms-grid;
   display: grid;
@@ -743,6 +773,188 @@ template {
   }
   .PlantCard_locationContainer_text, .PlantCard_plantCardLabel_value {
     margin-top: 0.075rem;
+  }
+}
+
+.plantDetail_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.plantDetail_card {
+  padding: 1rem;
+  width: 100%;
+  max-width: 700px;
+}
+
+.plantDetail_imageContainer {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  background-image: url(../assets/samplePlant.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.plantDetail_imageContainer_image {
+  width: 10rem;
+  height: 10rem;
+}
+
+.plantDetail_imageContainer_input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.plantDetail_imageContainer_label {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: #4F772D;
+  border-radius: 5px 0px 0px 0px;
+}
+
+.plantDetail_imageContainer_label:hover {
+  background-color: #5b8a34;
+  cursor: pointer;
+  -webkit-animation-name: hoverOverEdit;
+          animation-name: hoverOverEdit;
+  -webkit-animation-duration: 500ms;
+          animation-duration: 500ms;
+}
+
+.plantDetail_plantName {
+  padding-top: 0.25rem;
+  font-size: 4rem;
+}
+
+.plantDetail_inputContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-negative: 2;
+      flex-shrink: 2;
+}
+
+.plantDetail_currentHumidityLabel {
+  font-size: 2rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto 1fr auto;
+      grid-template-columns: auto auto 1fr auto;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.plantDetail_currentHumidityLabel_text {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+}
+
+.plantDetail_currentHumidityLabel_icon {
+  width: 2rem;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.plantDetail_currentHumidityLabel_value {
+  -ms-grid-column: 4;
+      grid-column-start: 4;
+}
+
+.plantDetail_humidityChanger {
+  font-size: 2rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto 1fr auto;
+      grid-template-columns: auto auto 1fr auto;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  padding: 0 1rem;
+}
+
+.plantDetail_humidityChanger_label_text {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+}
+
+.plantDetail_humidityChanger_label_icon {
+  width: 2rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+}
+
+.plantDetail_humidityChanger_input {
+  -ms-grid-column: 4;
+      grid-column-start: 4;
+}
+
+.plantDetail_humidityChanger_input_iconButton {
+  height: 2rem;
+  width: 2rem;
+}
+
+.plantDetail_humidityChanger_input_numberInput {
+  width: 3rem;
+  border: none;
+  height: 2rem;
+  text-align: center;
+}
+
+.plantDetail_humidityChanger_input_unitWrapper {
+  display: inline-block;
+  height: 2.5rem;
+  border-bottom: 1px solid #000000;
+}
+
+@-webkit-keyframes hoverOverEdit {
+  0% {
+    background-color: #4F772D;
+  }
+  100% {
+    background-color: #5b8a34;
+  }
+}
+
+@keyframes hoverOverEdit {
+  0% {
+    background-color: #4F772D;
+  }
+  100% {
+    background-color: #5b8a34;
   }
 }
 /*# sourceMappingURL=style.css.map */

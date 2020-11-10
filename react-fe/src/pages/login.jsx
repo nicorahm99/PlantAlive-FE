@@ -43,7 +43,6 @@ export default function Login() {
 	}
 
 	function onFormSubmit(event) {
-		console.log('hello')
 		event.preventDefault()
 		if (validateLogin()) {
 		// @TODO check for account
@@ -52,7 +51,6 @@ export default function Login() {
 	}
 	
 	function onSignUpButtonClicked() {
-		console.log('hello')
 		if(isRepeatPasswordDisplayed){
 			if (validateSignup()){
 				// @Todo create Account	
@@ -68,16 +66,14 @@ export default function Login() {
 		let isValid = true;
 		
 		if (!validateEmail()) {
-			setMailHelperText('z.B. \"mail@example.org\"');
+			setMailHelperText('z.B. "mail@example.org"');
 			setIsMailError(true);
 			isValid = false
-			console.log('Mail-wrong')
 		}
 		if (!validatePassword()) {
 			setPasswordHelperText('Mind. 8 Zeichen');
 			setIsPasswordError(true);
 			isValid = false
-			console.log('PW-invalid')
 		}
 		return isValid
 	}
@@ -88,7 +84,6 @@ export default function Login() {
 			setRepeatPasswordHelperText('Passwörter Stimmen nicht überein!');
 			setIsRepeatPasswordError(true);
 			isValid = false
-			console.log('PWs-differ')
 		}
 		return isValid
 	}
@@ -117,7 +112,7 @@ return (
 		<div className="pageLogin_Form"> 
 		<form onSubmit={onFormSubmit} >
 			<BasicInput className="userNameForm"
-				iconName="mail"
+				iconName="account"
 				isVisible={true}
 				placeholder="E-Mail"
 				onChange={onUserMailChange}

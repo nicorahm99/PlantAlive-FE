@@ -32,7 +32,7 @@ export default function BasicInput(props) {
         	    InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                          <Icon iconName='account' />
+                          <Icon iconName={props.iconName} className='basicInput_icon' />
                         </InputAdornment>
                     ),
                 }} 

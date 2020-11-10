@@ -52,7 +52,7 @@
     border: none;
 }
 
-@media(max-width:800px) {
+@media(max-width:$tabletWidth) {
 	.pageLogin {
 		&_divider {
 			display: none;

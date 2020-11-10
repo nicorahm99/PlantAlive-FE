@@ -10,13 +10,13 @@ export default function PlantCard(props) {
 
     return(
         <div className="PlantCard_frame">
-            <img className="PlantCard_img" src={samplePlant} />
+            <img className="PlantCard_img" src={samplePlant} alt="plant Avatar"/>
             <div className="PlantCard_plantName">{props.plantName}</div>
             <div className="PlantCard_locationContainer">
                 <Icon iconName="pin" className="PlantCard_locationContainer_pin" />
                 <div className="PlantCard_locationContainer_text">{props.location}</div>
             </div>
-            <IconButton className="PlantCard_editButton" aria-label="edit" /*color="inherit"*/ >
+            <IconButton className="PlantCard_editButton" aria-label="edit" /*color="inherit"*/ onClick={props.onEdit}>
                 <Icon iconName="edit"/>
             </IconButton>
             <PlantCardLabel className="PlantCard_plantCardLabelHumidity" iconName="humidity" value={props.humidity} />
@@ -32,4 +32,5 @@ PlantCard.propTypes = {
    plantName: PropTypes.string,
    humidity: PropTypes.number,
    temperature: PropTypes.number, 
+   onEdit: PropTypes.func,
 }

@@ -1,0 +1,136 @@
+.plantDetail{
+    &_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &_card{
+        padding: 1rem;
+        width: 100%;
+        max-width: 700px;
+    }
+
+    &_imageContainer{
+        position: relative;
+        width: 10rem;
+        height: 10rem;
+
+        background-image: url(../assets/samplePlant.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        &_image{
+            width: 10rem;
+            height: 10rem;
+        }
+        &_input{
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+        &_label{
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 2rem;
+            height: 2rem;
+
+            background-color: $pa-accentgreen;
+
+            border-radius: 5px 0px 0px 0px;
+
+            &:hover{
+                background-color: lighten($pa-accentgreen, 5%);
+                cursor: pointer;
+                animation-name: hoverOverEdit;
+                animation-duration: 500ms;
+            }
+        }
+    }
+
+    &_plantName{
+        padding-top: 0.25rem;
+        font-size: 4rem;
+    }
+
+    &_inputContainer{
+        display: flex;
+        flex-wrap: wrap;
+        flex-shrink: 2;
+    }
+    &_currentHumidityLabel{
+        font-size: 2rem;
+        display: grid;
+        grid-template-columns: auto auto 1fr auto;
+        grid-template-rows: auto;
+        padding: 0 1rem;
+        margin-bottom: 1rem;
+        &_text{
+            grid-column-start: 1;
+        }
+        &_icon{
+            width: 2rem;
+            grid-column-start: 2;
+            align-self: center;
+        }
+        &_value{
+            grid-column-start: 4;
+        }
+    }
+    &_humidityChanger{
+        font-size: 2rem;
+        display: grid;
+        grid-template-columns: auto auto 1fr auto;
+        grid-template-rows: auto;
+        padding: 0 1rem;
+        
+        &_label{
+            &_text{
+                grid-column-start: 1;
+            }
+            &_icon{
+                width: 2rem;
+                align-self: center;
+                grid-column-start: 2;
+            }
+
+        }
+        &_input{
+            grid-column-start: 4;
+            &_iconButton{
+                height: 2rem;
+                width: 2rem;
+            }
+            &_numberInput{
+                width: 3rem;
+                border: none;
+                height: 2rem;
+                text-align: center;
+            }
+            &_unitWrapper{
+                display: inline-block;
+                height: 2.5rem;
+                border-bottom: 1px solid #000000;
+            }
+        }
+    }
+}
+
+@keyframes hoverOverEdit{
+    0%      {background-color: $pa-accentgreen;}
+    100%    {background-color: lighten($pa-accentgreen, 5%);}
+}
+
+@media(max-width:$mobileWidth){
+    .plantDetail{
+
+    }
+}

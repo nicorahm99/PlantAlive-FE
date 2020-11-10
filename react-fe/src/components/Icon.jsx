@@ -12,6 +12,7 @@ import HomeIcon from '@material-ui/icons/Home'
 import AddBox from '@material-ui/icons/AddBox'
 import SettingsIcon from '@material-ui/icons/Settings'
 import EditIcon from '@material-ui/icons/Edit'
+import TagIcon from '@material-ui/icons/LocalOffer'
 
 export default function Icon(props) {
 
@@ -44,6 +45,8 @@ export default function Icon(props) {
             return (<SettingsIcon />)
         case "edit":
             return (<EditIcon />)
+        case "name":
+            return (<TagIcon />)
         default:
             return (<h3>IMG NOT FOUND</h3>)
     }
