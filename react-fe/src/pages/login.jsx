@@ -4,30 +4,45 @@ import BasicButton from '../components/BasicButton.jsx';
 import BasicInput from '../components/BasicInput.jsx';
 import Icon from '../components/Icon.jsx';
 import {useHistory} from 'react-router-dom';
+import { baseUrl, buildPostRequest, postCreateUser } from '../commons/fetches.js';
+import AlertHint from '../components/AlertHint.jsx';
 
 export default function Login() {
 	const history = useHistory();
 
 	const [ userMail, setUserMail ] = React.useState('');
+	const [ userName, setUserName ] = React.useState('');
 	const [ password, setPassword ] = React.useState('');
 	const [ repeatPassword, setRepeatPassword ] = React.useState('');
 
 	const [ mailHelperText, setMailHelperText] = React.useState('');
+	const [ userNameHelperText, setUserNameHelperText] = React.useState('');
 	const [ passwordHelperText, setPasswordHelperText] = React.useState('');
 	const [ repeatPasswordHelperText, setRepeatPasswordHelperText] = React.useState('');
 	
 	const [ isPasswordError, setIsPasswordError] = React.useState(false);
+	const [ isUserNameError, setIsUserNameError] = React.useState(false);
 	const [ isRepeatPasswordError, setIsRepeatPasswordError] = React.useState(false);
 	const [ isMailError, setIsMailError] = React.useState(false);
 	
 	const [ isRepeatPasswordDisplayed, setIsRepeatPasswordDisplayed ] = React.useState(false);
+
+	const [ showAlert, setShowAlert ] = React.useState(false);
+	const [ alertMessage, setAlertMessage ] = React.useState('');
 
 
 
 	function onUserMailChange( event ) {
 		setUserMail( event.target.value )
 		setIsMailError(false)
+		setShowAlert(false)
 		setMailHelperText('')
+	}
+
+	function onUserNameChange( event ) {
+		setUserName( event.target.value )
+		setIsUserNameError(false)
+		setUserNameHelperText('')
 	}
 
 	function onPasswordChange( event ) {
@@ -43,6 +58,7 @@ export default function Login() {
 	}
 
 	function onFormSubmit(event) {
+		setShowAlert(false)
 		event.preventDefault()
 		if (validateLogin()) {
 		// @TODO check for account
@@ -50,11 +66,23 @@ export default function Login() {
 		}
 	}
 	
-	function onSignUpButtonClicked() {
+	async function onSignUpButtonClicked() {
+		setShowAlert(false)
 		if(isRepeatPasswordDisplayed){
 			if (validateSignup()){
-				// @Todo create Account	
-				history.push('/home')
+				const request = buildPostRequest('/users', {mail:userMail, name:userName, password});
+				const response = await request();
+
+				console.log(response.status)
+				if (response.status === 201){
+					history.push('/home')
+				} else if (response.status === 403) {
+					setAlertMessage('Die angegebene Email ist bereits vergeben!')
+					setShowAlert(true)
+				} else {
+					setAlertMessage('Ups, da ist etwas schief gelaufen, bitte versuchen Sie es später erneut')
+					setShowAlert(true)
+				}
 			}
 			
 		} else {
@@ -80,6 +108,11 @@ export default function Login() {
 
 	function validateSignup() {
 		let isValid = validateLogin();
+		if (!validateName()) {
+			setUserNameHelperText('Geben Sie bitte Ihren Namen ein');
+			setIsUserNameError(true);
+			isValid = false
+		}
 		if (!validateRepeatPassword()) {
 			setRepeatPasswordHelperText('Passwörter Stimmen nicht überein!');
 			setIsRepeatPasswordError(true);
@@ -101,9 +134,17 @@ export default function Login() {
 		return true
 	}
 
+	function validateName() {
+		if (userName.length < 1){
+			return false
+		}
+		return true
+	}
+
 	function validateRepeatPassword() {
 		return(password === repeatPassword)
 	}
+
 return (
 	<div className="pageLogin pageLogin_flexContainer">
 		<Icon iconName="LOGO"
@@ -120,6 +161,17 @@ return (
 				hasError={isMailError}
 				helperText={mailHelperText}
 				/>
+			{isRepeatPasswordDisplayed ? 
+				<BasicInput className="userNameForm"
+					iconName="account"
+					isVisible={true}
+					placeholder="Name"
+					onChange={onUserNameChange}
+					value={userName}
+					hasError={isUserNameError}
+					helperText={userNameHelperText}
+					/>
+			:null}
 			<BasicInput className="passwordForm"
 				iconName="key"
 				isVisible={false}
@@ -148,6 +200,12 @@ return (
 				className="button_SignUp"
 				onClick={onSignUpButtonClicked} />
 		</div>
+		{showAlert ? <AlertHint 
+			message={alertMessage}
+			level='error'
+			close={() => setShowAlert(false)}
+			/> 
+		: null}
 		<Background />
 	</div>
 )

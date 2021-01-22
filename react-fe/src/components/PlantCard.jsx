@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from './Icon';
 import PropTypes from 'prop-types';
 import PlantCardLabel from './PlantCardLabel';
-import samplePlant from '../assets/samplePlant.svg'
+import samplePlant from '../images/samplePlant.svg'
 
 
 export default function PlantCard(props) {

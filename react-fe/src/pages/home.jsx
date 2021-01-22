@@ -12,7 +12,7 @@ export default function Home() {
   const mockPlantCard = (index) => {
     return (<PlantCard 
       key={index}
-      src="../assets/samplePlant.svg" 
+      src="../images/samplePlant.svg" 
       location="Wohnzimmer" 
       plantName="Schefflera"
       humidity={80} 
