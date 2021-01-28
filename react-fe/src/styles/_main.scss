@@ -5,6 +5,7 @@
 body, .App, #root{
     font-family: 'Teko', sans-serif !important;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .MuiTypography-body1, .MuiTypography-h4{
@@ -97,6 +98,7 @@ body, .App, #root{
     justify-content: flex-start;
     gap: 2rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .MuiFormLabel-root.Mui-focused {

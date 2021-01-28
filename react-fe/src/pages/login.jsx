@@ -4,7 +4,7 @@ import BasicButton from '../components/BasicButton.jsx';
 import BasicInput from '../components/BasicInput.jsx';
 import Icon from '../components/Icon.jsx';
 import {useHistory} from 'react-router-dom';
-import { baseUrl, buildPostRequest, postCreateUser } from '../commons/fetches.js';
+import { buildPostRequest } from '../commons/fetches.js';
 import AlertHint from '../components/AlertHint.jsx';
 
 export default function Login() {
@@ -25,7 +25,7 @@ export default function Login() {
 	const [ isRepeatPasswordError, setIsRepeatPasswordError] = React.useState(false);
 	const [ isMailError, setIsMailError] = React.useState(false);
 	
-	const [ isRepeatPasswordDisplayed, setIsRepeatPasswordDisplayed ] = React.useState(false);
+	const [ isSignup, setIsSignup ] = React.useState(false);
 
 	const [ showAlert, setShowAlert ] = React.useState(false);
 	const [ alertMessage, setAlertMessage ] = React.useState('');
@@ -57,24 +57,36 @@ export default function Login() {
 		setRepeatPasswordHelperText('')
 	}
 
-	function onFormSubmit(event) {
+	async function onFormSubmit(event) {
 		setShowAlert(false)
 		event.preventDefault()
+		if(isSignup){
+			return onSignUpButtonClicked()
+		}
 		if (validateLogin()) {
-		// @TODO check for account
-			history.push('/home')
+			const request = buildPostRequest('/users/auth', {mail:userMail, password});
+			const response = await request();
+
+			if (response.status === 200){
+				localStorage.setItem('userData', JSON.stringify(response.body))
+				history.push('/home')
+			} else {
+				setAlertMessage("Login leider nicht erfolgreich.\nBitte prüfen Sie Ihre Eingaben.")
+			}
+			
 		}
 	}
 	
 	async function onSignUpButtonClicked() {
 		setShowAlert(false)
-		if(isRepeatPasswordDisplayed){
+		if(isSignup){
 			if (validateSignup()){
 				const request = buildPostRequest('/users', {mail:userMail, name:userName, password});
 				const response = await request();
 
 				console.log(response.status)
 				if (response.status === 201){
+					localStorage.setItem('userData', JSON.stringify(response.body))
 					history.push('/home')
 				} else if (response.status === 403) {
 					setAlertMessage('Die angegebene Email ist bereits vergeben!')
@@ -86,7 +98,7 @@ export default function Login() {
 			}
 			
 		} else {
-			setIsRepeatPasswordDisplayed(true)
+			setIsSignup(true)
 		}
 	}
 
@@ -161,7 +173,7 @@ return (
 				hasError={isMailError}
 				helperText={mailHelperText}
 				/>
-			{isRepeatPasswordDisplayed ? 
+			{isSignup ? 
 				<BasicInput className="userNameForm"
 					iconName="account"
 					isVisible={true}
@@ -181,7 +193,7 @@ return (
 				hasError={isPasswordError}
 				helperText={passwordHelperText}
 				/>
-			{isRepeatPasswordDisplayed ? 
+			{isSignup ? 
 				<BasicInput className="passwordForm"
 					iconName="key"
 					isVisible={false}

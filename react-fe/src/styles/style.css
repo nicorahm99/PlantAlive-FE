@@ -4,6 +4,7 @@
 body, .App, #root {
   font-family: 'Teko', sans-serif !important;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .MuiTypography-body1, .MuiTypography-h4 {
@@ -116,6 +117,8 @@ body, .App, #root {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .MuiFormLabel-root.Mui-focused {
@@ -955,6 +958,14 @@ template {
   }
   100% {
     background-color: #5b8a34;
+  }
+}
+
+@media (max-width: 450px) {
+  .plantDetail_card {
+    margin: 0;
+    margin-left: -1rem;
+    width: calc(100vw - 1rem);
   }
 }
 /*# sourceMappingURL=style.css.map */

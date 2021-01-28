@@ -83,6 +83,11 @@ export default function AppNavigation(props) {
           <ListItemIcon><Icon iconName="settings"/></ListItemIcon>
               <ListItemText primary='Einstellungen'/>
           </ListItem>
+
+          <ListItem button key='Ausloggen'>
+          <ListItemIcon><Icon iconName="exitToApp"/></ListItemIcon>
+              <ListItemText primary='Ausloggen'/>
+          </ListItem>
         </List>
       </div>
     );

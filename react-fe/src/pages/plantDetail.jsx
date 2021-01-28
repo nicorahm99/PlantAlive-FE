@@ -79,7 +79,7 @@ export default function PlantDetail(props) {
                 <div className='universal_flexRow'>
                 <PlantDetailImage imagePath={imagePath} onInputChange={onFileInputChange} />
                 
-                <h1 className='plantDetail_plantName'>{plantName?plantName:'Pflanzenname'}</h1>
+                <span className='plantDetail_plantName'>{plantName?plantName:'Pflanzenname'}</span>
                 </div>
                 <PlantDetailInputs 
                     isNameError={isPlantNameError}

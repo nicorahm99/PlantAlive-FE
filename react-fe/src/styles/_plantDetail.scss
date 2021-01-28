@@ -131,6 +131,10 @@
 
 @media(max-width:$mobileWidth){
     .plantDetail{
-
+        &_card{
+            margin: 0;
+            margin-left: -1rem;
+            width: calc(100vw - 1rem);
+        }
     }
 }
