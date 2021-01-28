@@ -61,17 +61,16 @@ export default function Login() {
 		setShowAlert(false)
 		event.preventDefault()
 		if(isSignup){
-			return onSignUpButtonClicked()
-		}
-		if (validateLogin()) {
+			return handleSignUp()
+		} else if (validateLogin()) {
 			const request = buildPostRequest('/users/auth', {mail:userMail, password});
 			const response = await request();
-
 			if (response.status === 200){
 				localStorage.setItem('userData', JSON.stringify(response.body))
 				history.push('/home')
 			} else {
 				setAlertMessage("Login leider nicht erfolgreich.\nBitte prüfen Sie Ihre Eingaben.")
+				setShowAlert(true)
 			}
 			
 		}
@@ -80,25 +79,28 @@ export default function Login() {
 	async function onSignUpButtonClicked() {
 		setShowAlert(false)
 		if(isSignup){
-			if (validateSignup()){
-				const request = buildPostRequest('/users', {mail:userMail, name:userName, password});
-				const response = await request();
-
-				console.log(response.status)
-				if (response.status === 201){
-					localStorage.setItem('userData', JSON.stringify(response.body))
-					history.push('/home')
-				} else if (response.status === 403) {
-					setAlertMessage('Die angegebene Email ist bereits vergeben!')
-					setShowAlert(true)
-				} else {
-					setAlertMessage('Ups, da ist etwas schief gelaufen, bitte versuchen Sie es später erneut')
-					setShowAlert(true)
-				}
-			}
-			
+			await handleSignUp();
 		} else {
 			setIsSignup(true)
+		}
+	}
+
+
+	async function handleSignUp() {
+		if (validateSignup()) {
+			const request = buildPostRequest('/users', { mail: userMail, name: userName, password });
+			const response = await request();
+
+			if (response.status === 201) {
+				localStorage.setItem('userData', JSON.stringify(response.body));
+				history.push('/home');
+			} else if (response.status === 403) {
+				setAlertMessage('Die angegebene Email ist bereits vergeben!');
+				setShowAlert(true);
+			} else {
+				setAlertMessage('Ups, da ist etwas schief gelaufen, bitte versuchen Sie es später erneut');
+				setShowAlert(true);
+			}
 		}
 	}
 

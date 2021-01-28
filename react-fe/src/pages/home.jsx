@@ -22,6 +22,9 @@ export default function Home() {
       }}
     />)
   }
+  if (!localStorage.getItem("userData")){
+    history.push('/')
+  }
 
   return (
       <AppNavigation>

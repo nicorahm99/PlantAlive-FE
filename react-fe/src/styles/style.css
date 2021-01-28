@@ -90,7 +90,7 @@ body, .App, #root {
 .Universal_Bottom_centered_Hint_Container {
   position: fixed;
   width: 100%;
-  bottom: 1rem;
+  bottom: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
