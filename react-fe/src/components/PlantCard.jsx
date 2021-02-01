@@ -9,7 +9,7 @@ import samplePlant from '../images/samplePlant.svg'
 export default function PlantCard(props) {
 
     return(
-        <div className="PlantCard_frame">
+        <div className="PlantCard_frame PlantCard_frame_grid">
             <img className="PlantCard_img" src={samplePlant} alt="plant Avatar"/>
             <div className="PlantCard_plantName">{props.plantName}</div>
             <div className="PlantCard_locationContainer">

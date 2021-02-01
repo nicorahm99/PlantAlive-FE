@@ -6,6 +6,7 @@ import Icon from '../components/Icon.jsx';
 import {useHistory} from 'react-router-dom';
 import { buildPostRequest } from '../commons/fetches.js';
 import AlertHint from '../components/AlertHint.jsx';
+import {reactLocalStorage} from 'reactjs-localstorage';
 
 export default function Login() {
 	const history = useHistory();
@@ -66,7 +67,7 @@ export default function Login() {
 			const request = buildPostRequest('/users/auth', {mail:userMail, password});
 			const response = await request();
 			if (response.status === 200){
-				localStorage.setItem('userData', JSON.stringify(response.body))
+				reactLocalStorage.setObject('userData', await response.json())
 				history.push('/home')
 			} else {
 				setAlertMessage("Login leider nicht erfolgreich.\nBitte prüfen Sie Ihre Eingaben.")
@@ -92,7 +93,7 @@ export default function Login() {
 			const response = await request();
 
 			if (response.status === 201) {
-				localStorage.setItem('userData', JSON.stringify(response.body));
+				reactLocalStorage.setObject('userData', await response.json())
 				history.push('/home');
 			} else if (response.status === 403) {
 				setAlertMessage('Die angegebene Email ist bereits vergeben!');
