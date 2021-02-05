@@ -14,13 +14,16 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Icon from '../components/Icon';
 import Background from '../components/Background';
+import { customTheme } from '../commons/theme';
 
 const drawerWidth = 240;
+const palette = customTheme;
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        fontFamily: "'Teko', sans-serif !important"
+        fontFamily: "'Teko', sans-serif !important",
+        color: palette.primary.text
     },
     drawer: {
         [theme.breakpoints.up('sm')]: {
@@ -29,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     appBar: {
-        color:'#000000',
-        backgroundColor: '#31572C',
+        color: palette.primary.text,
+        backgroundColor: palette.primary.main,
         zIndex: theme.zIndex.drawer + 1,
     },
     menuButton: {
@@ -42,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     drawerPaper: {
         width: drawerWidth,
+        backgroundColor: palette.primary.text,
+        color: palette.primary.dark
     },
     content: {
         flexGrow: 1,
