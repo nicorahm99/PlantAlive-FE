@@ -5,24 +5,23 @@ import {useHistory} from 'react-router-dom';
 import { buildGetRequest } from '../commons/fetches';
 import WelcomeInsert from '../components/WelcomInsert';
 import { getUserDataFromStorage } from '../commons/utils';
+import {Fab} from '@material-ui/core';
+import Icon from '../components/Icon';
 
 
 export default function Home() {
   const history = useHistory();
 
   const [plants, setPlants] = React.useState(null);
-  const [userData, setUserData] = React.useState();
+  const userData = getUserDataFromStorage();
 
   useEffect(() => {
-    setUserData(getUserDataFromStorage())
     fetchPlants()
   },[])
 
 
   const fetchPlants = async () => {
-    const userId = JSON.parse(window.localStorage.getItem("userData")).id
-    // const request = buildGetRequest(`/plants/${userId}`)
-    const request = buildGetRequest(`/plants/fromUser/1`)
+    const request = buildGetRequest(`/plants/fromUser/${userData.id}`)
     const responseBody = await (await request()).json()
     setPlants(responseBody)
   }
@@ -36,25 +35,25 @@ export default function Home() {
     return(   
       <div>
         {plants.map((plant, index) => {
-          return mockPlantCard(index)
+          return renderPlantCard(plant, index)
         })}
       </div>) 
   }
-  const mockPlantCard = (plant, index) => {
+  const renderPlantCard = (plant, index) => {
     return (<PlantCard 
       key={index}
       src="../images/samplePlant.svg" 
-      location="Wohnzimmer" 
-      plantName="Schefflera"
-      humidity={80} 
-      temperature={21}
+      location={plant.location} 
+      plantName={plant.name}
+      humidity={plant.humidity} 
+      temperature={plant.temperature}
       onEdit={() => {
         history.push('/detail')
       }}
     />)
   }
 
-  if (!userData?.id){
+  if (!userData.id){
     history.push('/')
   }
 
@@ -62,6 +61,11 @@ export default function Home() {
       <AppNavigation>
         <div className="pageHome_cardContainer">
           {getContent()}
+        </div>
+        <div className="pageHome_flotingActionButton">
+          <Fab aria-label="add">
+            <Icon iconName="add"/>
+          </Fab>
         </div>
       </AppNavigation>
   );

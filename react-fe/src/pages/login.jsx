@@ -64,16 +64,20 @@ export default function Login() {
 		if(isSignup){
 			return handleSignUp()
 		} else if (validateLogin()) {
-			const request = buildPostRequest('/users/auth', {mail:userMail, password});
-			const response = await request();
-			if (response.status === 200){
-				reactLocalStorage.setObject('userData', await response.json())
-				history.push('/home')
-			} else {
-				setAlertMessage("Login leider nicht erfolgreich.\nBitte prüfen Sie Ihre Eingaben.")
+			try {
+				const request = buildPostRequest('/users/auth', {mail:userMail, password});
+				const response = await request();
+				if (response.status === 200){
+					reactLocalStorage.setObject('userData', await response.json())
+					history.push('/home')
+				} else {
+					setAlertMessage("Login leider nicht erfolgreich.\nBitte prüfen Sie Ihre Eingaben.")
+					setShowAlert(true)
+				}
+			} catch {
+				setAlertMessage("Ups, da ist etwas schief gelaufen.\nBitte versuchen Sie es später erneut oder kontaktieren sie den Support.")
 				setShowAlert(true)
 			}
-			
 		}
 	}
 	
