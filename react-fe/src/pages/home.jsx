@@ -62,10 +62,8 @@ export default function Home() {
         <div className="pageHome_cardContainer">
           {getContent()}
         </div>
-        <div className="pageHome_flotingActionButton">
-          <Fab aria-label="add">
+        <div className="pageHome_flotingActionButton" onClick={()=>null}>
             <Icon iconName="add"/>
-          </Fab>
         </div>
       </AppNavigation>
   );

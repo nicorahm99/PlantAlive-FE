@@ -612,179 +612,66 @@ template {
 }
 
 .pageHome_flotingActionButton {
+  color: #f9a620;
+  background-color: #f7fff6;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-}
-
-.PlantCard_frame {
-  margin-bottom: 1rem;
-  border: 1px solid #000000;
-  display: -ms-grid;
-  display: grid;
-  width: 100%;
-  max-width: 700px;
-  height: 7rem;
-  background-color: #FFFFFF;
-  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 2rem;
-}
-
-.PlantCard_frame_grid {
-  -ms-grid-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 2rem;
-      grid-template-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 2rem;
-  -ms-grid-rows: 1rem 2rem 1rem 2rem 1rem;
-      grid-template-rows: 1rem 2rem 1rem 2rem 1rem;
-}
-
-.PlantCard_img {
-  width: 75px;
-  height: 80px;
-  -ms-grid-column: 2;
-      grid-column-start: 2;
-  -ms-grid-row: 2;
-      grid-row-start: 2;
-  grid-row-end: 4;
-}
-
-.PlantCard_plantName {
-  -ms-grid-row: 2;
-      grid-row-start: 2;
-  -ms-grid-column: 5;
-      grid-column-start: 5;
-  font-size: 2.5rem;
-  margin-top: -0.6rem;
-  text-decoration: underline;
-}
-
-.PlantCard_locationContainer {
-  -ms-grid-row: 2;
-      grid-row-start: 2;
-  -ms-grid-column: 8;
-      grid-column-start: 8;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.PlantCard_locationContainer_pin {
-  width: 1.5rem;
+.pageHome_flotingActionButton:hover {
+  background-color: #e5ffe2;
 }
 
-.PlantCard_locationContainer_text {
-  margin-top: -0.25rem;
-}
-
-.PlantCard_editButton {
-  -ms-grid-row: 1;
-      grid-row-start: 1;
-  -ms-grid-column: 10;
-      grid-column-start: 10;
-}
-
-.PlantCard_plantCardLabel {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  background-color: #4F772D;
-}
-
-.PlantCard_plantCardLabel_icon {
-  width: 1.5rem;
-}
-
-.PlantCard_plantCardLabel_value {
-  margin-top: -0.25rem;
-}
-
-.PlantCard_plantCardLabelHumidity {
-  -ms-grid-row: 4;
-      grid-row-start: 4;
-  -ms-grid-column: 5;
-      grid-column-start: 5;
-}
-
-.PlantCard_plantCardLabelTemperature {
-  -ms-grid-row: 4;
-      grid-row-start: 4;
-  -ms-grid-column: 8;
-      grid-column-start: 8;
-}
-
-@media (max-width: 800px) {
-  .PlantCard_frame {
-    font-size: 1.5rem;
-  }
-  .PlantCard_plantName {
-    margin-top: -0.25rem;
-    font-size: 2rem;
-  }
-  .PlantCard_locationContainer_text, .PlantCard_plantCardLabel_value {
-    margin-top: 0.075rem;
-  }
+.pageHome_flotingActionButton:active {
+  -webkit-animation-name: clickRemovesShadow;
+          animation-name: clickRemovesShadow;
+  -webkit-animation-duration: 20ms;
+          animation-duration: 20ms;
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 450px) {
-  .PlantCard_frame {
-    height: 10rem;
-    font-size: 1.5rem;
-    -ms-grid-columns: 1rem 75px 1rem 2fr 3fr 1rem 2rem;
-        grid-template-columns: 1rem 75px 1rem 2fr 3fr 1rem 2rem;
-    -ms-grid-rows: 1rem 2rem 1rem 2rem 1rem 2rem 1rem;
-        grid-template-rows: 1rem 2rem 1rem 2rem 1rem 2rem 1rem;
+  .pageHome_flotingActionButton {
+    bottom: 1rem;
+    right: 1rem;
   }
-  .PlantCard_img {
-    -ms-grid-column: 2;
-        grid-column-start: 2;
-    grid-row-end: 4;
-    -ms-grid-row: 2;
-        grid-row-start: 2;
+}
+
+@-webkit-keyframes clickRemovesShadow {
+  0% {
+    -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   }
-  .PlantCard_plantName {
-    -ms-grid-column: 4;
-        grid-column-start: 4;
-    grid-column-end: 6;
-    -ms-grid-row: 2;
-        grid-row-start: 2;
-    margin-top: -0.25rem;
-    font-size: 2rem;
+  100% {
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
   }
-  .PlantCard_editButton {
-    -ms-grid-column: 7;
-        grid-column-start: 7;
-    -ms-grid-row: 2;
-        grid-row-start: 2;
+}
+
+@keyframes clickRemovesShadow {
+  0% {
+    -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   }
-  .PlantCard_locationContainer {
-    -ms-grid-column: 4;
-        grid-column-start: 4;
-    grid-column-end: 6;
-    -ms-grid-row: 4;
-        grid-row-start: 4;
-  }
-  .PlantCard_plantCardLabel {
-    -ms-grid-row: 6;
-        grid-row-start: 6;
-    margin-right: 0.3rem;
-  }
-  .PlantCard_plantCardLabelHumidity {
-    -ms-grid-column: 2;
-        grid-column-start: 2;
-    grid-column-end: 5;
-  }
-  .PlantCard_plantCardLabelTemperature {
-    -ms-grid-column: 5;
-        grid-column-start: 5;
-    grid-column-end: 8;
-  }
-  .PlantCard_locationContainer_text, .PlantCard_plantCardLabel_value {
-    margin-top: 0.075rem;
+  100% {
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -975,6 +862,203 @@ template {
     margin: 0;
     margin-left: -1rem;
     width: calc(100vw - 1rem);
+  }
+}
+
+.PlantCard_frame {
+  margin-bottom: 1rem;
+  border: 1px solid #000000;
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  max-width: 700px;
+  height: 7rem;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 2rem;
+}
+
+.PlantCard_frame_grid {
+  -ms-grid-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 2rem;
+      grid-template-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 2rem;
+  -ms-grid-rows: 1rem 2rem 1rem 2rem 1rem;
+      grid-template-rows: 1rem 2rem 1rem 2rem 1rem;
+}
+
+.PlantCard_img {
+  width: 75px;
+  height: 80px;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  grid-row-end: 4;
+}
+
+.PlantCard_plantName {
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  -ms-grid-column: 5;
+      grid-column-start: 5;
+  font-size: 2.5rem;
+  margin-top: -0.6rem;
+  text-decoration: underline;
+}
+
+.PlantCard_locationContainer {
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  -ms-grid-column: 8;
+      grid-column-start: 8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.PlantCard_locationContainer_pin {
+  width: 1.5rem;
+}
+
+.PlantCard_locationContainer_text {
+  margin-top: -0.25rem;
+}
+
+.PlantCard_editButton {
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  -ms-grid-column: 10;
+      grid-column-start: 10;
+}
+
+.PlantCard_plantCardLabel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #4F772D;
+}
+
+.PlantCard_plantCardLabel_icon {
+  width: 1.5rem;
+}
+
+.PlantCard_plantCardLabel_value {
+  margin-top: -0.25rem;
+}
+
+.PlantCard_plantCardLabelHumidity {
+  -ms-grid-row: 4;
+      grid-row-start: 4;
+  -ms-grid-column: 5;
+      grid-column-start: 5;
+}
+
+.PlantCard_plantCardLabelTemperature {
+  -ms-grid-row: 4;
+      grid-row-start: 4;
+  -ms-grid-column: 8;
+      grid-column-start: 8;
+}
+
+.PlantCard_welcomeInsert {
+  border: 1px solid #000000;
+  width: 100%;
+  max-width: 700px;
+  background-color: #FFFFFF;
+  color: #030311;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.PlantCard_welcomeInsert_icon {
+  height: 2rem;
+}
+
+@media (max-width: 800px) {
+  .PlantCard_frame {
+    font-size: 1.5rem;
+  }
+  .PlantCard_plantName {
+    margin-top: -0.25rem;
+    font-size: 2rem;
+  }
+  .PlantCard_locationContainer_text, .PlantCard_plantCardLabel_value {
+    margin-top: 0.075rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .PlantCard_frame {
+    height: 10rem;
+    font-size: 1.5rem;
+    -ms-grid-columns: 1rem 75px 1rem 2fr 3fr 1rem 2rem;
+        grid-template-columns: 1rem 75px 1rem 2fr 3fr 1rem 2rem;
+    -ms-grid-rows: 1rem 2rem 1rem 2rem 1rem 2rem 1rem;
+        grid-template-rows: 1rem 2rem 1rem 2rem 1rem 2rem 1rem;
+  }
+  .PlantCard_img {
+    -ms-grid-column: 2;
+        grid-column-start: 2;
+    grid-row-end: 4;
+    -ms-grid-row: 2;
+        grid-row-start: 2;
+  }
+  .PlantCard_plantName {
+    -ms-grid-column: 4;
+        grid-column-start: 4;
+    grid-column-end: 6;
+    -ms-grid-row: 2;
+        grid-row-start: 2;
+    margin-top: -0.25rem;
+    font-size: 2rem;
+  }
+  .PlantCard_editButton {
+    -ms-grid-column: 7;
+        grid-column-start: 7;
+    -ms-grid-row: 2;
+        grid-row-start: 2;
+  }
+  .PlantCard_locationContainer {
+    -ms-grid-column: 4;
+        grid-column-start: 4;
+    grid-column-end: 6;
+    -ms-grid-row: 4;
+        grid-row-start: 4;
+  }
+  .PlantCard_plantCardLabel {
+    -ms-grid-row: 6;
+        grid-row-start: 6;
+    margin-right: 0.3rem;
+  }
+  .PlantCard_plantCardLabelHumidity {
+    -ms-grid-column: 2;
+        grid-column-start: 2;
+    grid-column-end: 5;
+  }
+  .PlantCard_plantCardLabelTemperature {
+    -ms-grid-column: 5;
+        grid-column-start: 5;
+    grid-column-end: 8;
+  }
+  .PlantCard_locationContainer_text, .PlantCard_plantCardLabel_value {
+    margin-top: 0.075rem;
   }
 }
 /*# sourceMappingURL=style.css.map */

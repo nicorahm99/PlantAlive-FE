@@ -41,7 +41,7 @@ export default function Icon(props) {
         case "home":
             return (<HomeIcon />)
         case "add":
-            return (<AddBox />)
+            return (<AddBox fontSize={props.fontSize?props.fontSize:"default"} />)
         case "settings":
             return (<SettingsIcon />)
         case "edit":
