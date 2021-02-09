@@ -1,15 +1,16 @@
-import { Card } from '@material-ui/core';
 import React from 'react'
+import { buildPostRequest } from '../commons/fetches';
 import AppNavigation from '../components/AppNavigation'
-import BasicFrame from '../components/BasicFrame';
+import BasicButton from '../components/BasicButton';
+import AlertHint from '../components/AlertHint';
 import HumidityChanger from '../components/HumidityChanger';
-import Icon from '../components/Icon';
 import PlantDetailImage from '../components/PlantDetailImage';
 import PlantDetailInputs from '../components/PlantDetailInputs';
-import {buildGetRequest} from '../commons/fetches'
+import { useHistory } from 'react-router-dom';
+import { getUserDataFromStorage } from '../commons/utils';
 
-export default function PlantDetail(props) {
-    const [currentHumidity, setCurrentHumidity] = React.useState(0);
+export default function NewPlant(props) {
+    const history = useHistory()
 
     const [image, setImage] = React.useState();
     const [imagePath, setImagePath] = React.useState();
@@ -24,6 +25,9 @@ export default function PlantDetail(props) {
     const [plantNameHelperText, setPlantNameHelperText] = React.useState('')
     const [locationHelperText, setLocationHelperText] = React.useState('')
 
+    const [alertMessage, setAlertMessage] = React.useState(false)
+    
+
     const onFileInputChange = (e) => {
         let file = e.target.files[0]
 
@@ -37,6 +41,8 @@ export default function PlantDetail(props) {
         let response = await fetch(url)
         let image = await response.blob()
         let imagePath = URL.createObjectURL(image)
+
+        console.log(imagePath)
 
         setImage(image)
         setImagePath(imagePath)
@@ -67,32 +73,37 @@ export default function PlantDetail(props) {
         }
         setLocation(value)
     }
-    
-    const fetchPlant = async () => {
-        const request = buildGetRequest(`/plants/${props.match.params.plantId}`)
-        const response = await request()
-        if (response.status === 200){
-            const body = await response.json()
-            setPlantName(body.name)
-            setLocation(body.location)
-            setTargetHumidity(body.targetHumidity?body.targetHumidity:0)
-            setCurrentHumidity(body.currentHumidity?body.currentHumidity:"---")
-            // setImagePath(body.path)
-        }
 
+    const validateForm = () => {
+        return plantName && location && targetHumidity
+    }
+
+    const onSubmit = async () => {
+        setAlertMessage(null)
+        if (validateForm()){
+            const userData = getUserDataFromStorage()
+            const request = buildPostRequest("/plants", {name: plantName, location, targetHumidity, ownerId: userData.id})
+            const response = await request()
+            if (response.status === 201){
+                history.push('/home')
+            } else {
+                setAlertMessage("Da ist etwas schief gelaufen, bitte versuchen Sie es später erneut!")
+            }
+        } else {
+            setAlertMessage("Bitte prüfen Sie Ihre Eingaben")
+        }
+        
     }
 
     React.useEffect(() => {
-        fetchPlant()
         fetchImage('https://picsum.photos/200')
-    // eslint-disable-next-line
     }, [])
 
 
     return(
         <AppNavigation>
-            <div className='plantDetail_container'>
-            <Card className='plantDetail_card'>
+            <div className='universal_centeredContent addPlant_container'>
+            <div className='addPlant_card'>
                 <div className='universal_flexRow'>
                 <PlantDetailImage imagePath={imagePath} onInputChange={onFileInputChange} />
                 
@@ -109,20 +120,27 @@ export default function PlantDetail(props) {
                     locationHelperText={locationHelperText}
                 />
 
-                <BasicFrame className="plantDetail_currentHumidityLabel">
-                    <span className='plantDetail_currentHumidityLabel_text'>
-                        Ist-
-                    </span>
-                    <Icon iconName='humidity' className='plantDetail_currentHumidityLabel_icon'/>
-                    <span className='plantDetail_currentHumidityLabel_value'>
-                        {currentHumidity + '%'}    
-                    </span>    
-                </BasicFrame>
                 <HumidityChanger
                     value={targetHumidity}
                     setValue={setTargetHumidity}
-                /> 
-            </Card>
+                />
+                <div className="universal_flexRow addPlant_buttonContainer">
+                    <BasicButton className="button_quit addPlant_buttonContainer_quit">
+                        Abbrechen
+                    </BasicButton>
+                    <BasicButton className="button_Accent addPlant_buttonContainer_submit" onClick={() => onSubmit()} >
+                        Hinzufügen
+                    </BasicButton>
+                </div>
+            </div>
+                {alertMessage ? 
+                    <AlertHint 
+			            message={alertMessage}
+			            level='error'
+			            close={() => setAlertMessage(null)}
+			        /> 
+		        : 
+                    null}
             </div>
         </AppNavigation>
     )

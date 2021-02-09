@@ -27,6 +27,23 @@ export default function PlantDetailInputs(props){
 				hasError={props.isLocationError}
 				helperText={props.locationHelperText}
 			/>
+			{/* @TODO Make Location selectable from definded values */}
+			{/* <div>
+			<InputLabel htmlFor="age-native-simple">Standort</InputLabel>
+        	<Select
+        	  	native
+        	  	value={props.location}
+        	  	onChange={props.onLocationChange}
+				value={props.location}
+				hasError={props.isLocationError}
+				helperText={props.locationHelperText}
+        	>
+        	  	<option aria-label="None" value="" />
+        	  	<option value={10}>Ten</option>
+        	  	<option value={20}>Twenty</option>
+        	  	<option value={30}>Thirty</option>
+        	</Select>
+			</div> */}
     </div>
     )
 }

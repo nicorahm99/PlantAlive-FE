@@ -20,7 +20,7 @@ const getDecoration = (className) => {
 }
 
 PlantCardLabel.propTypes ={
-    value: PropTypes.number,
+    value: PropTypes.string,
     iconName: PropTypes.string,
     className: PropTypes.string,
 }

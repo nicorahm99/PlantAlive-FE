@@ -5,7 +5,6 @@ import {useHistory} from 'react-router-dom';
 import { buildGetRequest } from '../commons/fetches';
 import WelcomeInsert from '../components/WelcomInsert';
 import { getUserDataFromStorage } from '../commons/utils';
-import {Fab} from '@material-ui/core';
 import Icon from '../components/Icon';
 
 
@@ -15,16 +14,16 @@ export default function Home() {
   const [plants, setPlants] = React.useState(null);
   const userData = getUserDataFromStorage();
 
-  useEffect(() => {
-    fetchPlants()
-  },[])
-
-
   const fetchPlants = async () => {
     const request = buildGetRequest(`/plants/fromUser/${userData.id}`)
     const responseBody = await (await request()).json()
     setPlants(responseBody)
   }
+
+  useEffect(() => {
+    fetchPlants()    
+  // eslint-disable-next-line
+  },[])
 
   const getContent = () => {
     if (plants === null){
@@ -45,10 +44,10 @@ export default function Home() {
       src="../images/samplePlant.svg" 
       location={plant.location} 
       plantName={plant.name}
-      humidity={plant.humidity} 
-      temperature={plant.temperature}
+      humidity={plant.humidity?plant.humidity:"--"} 
+      temperature={plant.temperature?plant.temperature:"--"}
       onEdit={() => {
-        history.push('/detail')
+        history.push(`/detail/${plant.id}`)
       }}
     />)
   }
@@ -62,7 +61,7 @@ export default function Home() {
         <div className="pageHome_cardContainer">
           {getContent()}
         </div>
-        <div className="pageHome_flotingActionButton" onClick={()=>null}>
+        <div className="pageHome_flotingActionButton" onClick={() => history.push("/new")} >
             <Icon iconName="add"/>
         </div>
       </AppNavigation>

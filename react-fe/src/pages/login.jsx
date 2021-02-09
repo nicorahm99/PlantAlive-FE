@@ -211,13 +211,13 @@ return (
 					helperText={repeatPasswordHelperText}
 					/>
 			:null}
-			<BasicButton text="Log IN"
-				className="button_LogIn"
-				onClick={onFormSubmit} />
+			<BasicButton className="button_LogIn" onClick={onFormSubmit} >
+				Log IN
+			</BasicButton>
 		</form>
-			<BasicButton text="Sign UP"
-				className="button_SignUp"
-				onClick={onSignUpButtonClicked} />
+			<BasicButton className="button_SignUp" onClick={onSignUpButtonClicked} >
+				Sign UP
+			</BasicButton>
 		</div>
 		{showAlert ? <AlertHint 
 			message={alertMessage}

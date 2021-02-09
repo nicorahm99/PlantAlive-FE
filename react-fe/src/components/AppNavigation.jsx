@@ -15,6 +15,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Icon from '../components/Icon';
 import Background from '../components/Background';
 import { customTheme } from '../commons/theme';
+import {useHistory} from 'react-router-dom';
+
 
 const drawerWidth = 240;
 const palette = customTheme;
@@ -63,6 +65,7 @@ export default function AppNavigation(props) {
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
+    const history = useHistory();
     const [mobileOpen, setMobileOpen] = React.useState(false);
   
     const handleDrawerToggle = () => {
@@ -74,22 +77,22 @@ export default function AppNavigation(props) {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          <ListItem button key='Home' >
+          <ListItem button key='Home' onClick={() => history.push("/home")} >
             <ListItemIcon><Icon iconName="home"/></ListItemIcon>
             <ListItemText primary='Home'/>
           </ListItem>
   
-          <ListItem button key='Pflanze Hinzufügen'>
+          <ListItem button key='Pflanze Hinzufügen' onClick={() => history.push("/new")} >
               <ListItemIcon><Icon iconName="add"/></ListItemIcon>
               <ListItemText primary='Pflanze Hinzufügen'/>
           </ListItem>
   
-          <ListItem button key='Einstellungen'>
+          <ListItem button key='Einstellungen' onClick={() => history.push("/settings")} >
           <ListItemIcon><Icon iconName="settings"/></ListItemIcon>
               <ListItemText primary='Einstellungen'/>
           </ListItem>
 
-          <ListItem button key='Ausloggen'>
+          <ListItem button key='Ausloggen' onClick={() => history.push("/logout")} >
           <ListItemIcon><Icon iconName="exitToApp"/></ListItemIcon>
               <ListItemText primary='Ausloggen'/>
           </ListItem>

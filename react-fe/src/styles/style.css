@@ -67,11 +67,46 @@ body, .App, #root {
 }
 
 .button_Basic {
-  background-color: #FFFFFF;
+  background-color: white;
   border: 2px solid #000000;
   font-size: 20;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.button_Basic:hover {
+  background-color: #e5ffe2;
+}
+
+.button_Basic:active {
+  -webkit-animation-name: clickRemovesShadow;
+          animation-name: clickRemovesShadow;
+  -webkit-animation-duration: 20ms;
+          animation-duration: 20ms;
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+}
+
+.button_Accent {
+  background-color: #444444;
+  border: 2px solid #000000;
+  font-size: 20;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #f7fff6;
+}
+
+.button_Accent:hover {
+  background-color: #4e4e4e;
+}
+
+.button_Accent:active {
+  -webkit-animation-name: clickRemovesShadow;
+          animation-name: clickRemovesShadow;
+  -webkit-animation-duration: 20ms;
+          animation-duration: 20ms;
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
 }
 
 .basicInput_icon {
@@ -119,6 +154,16 @@ body, .App, #root {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.universal_centeredContent {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .MuiFormLabel-root.Mui-focused {
@@ -586,6 +631,10 @@ template {
   border: none;
 }
 
+.button_SignUp:hover {
+  background-color: #535353;
+}
+
 @media (max-width: 800px) {
   .pageLogin_divider {
     display: none;
@@ -612,7 +661,7 @@ template {
 }
 
 .pageHome_flotingActionButton {
-  color: #f9a620;
+  color: #444444;
   background-color: #f7fff6;
   position: fixed;
   bottom: 2rem;
@@ -876,6 +925,7 @@ template {
   background-color: #FFFFFF;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #030311;
   font-size: 2rem;
 }
 
@@ -973,7 +1023,7 @@ template {
   color: #030311;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -985,10 +1035,6 @@ template {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-}
-
-.PlantCard_welcomeInsert_icon {
-  height: 2rem;
 }
 
 @media (max-width: 800px) {
@@ -1059,6 +1105,43 @@ template {
   }
   .PlantCard_locationContainer_text, .PlantCard_plantCardLabel_value {
     margin-top: 0.075rem;
+  }
+}
+
+.addPlant_card {
+  max-width: 700px;
+  width: 100%;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 1rem;
+  color: #030311;
+}
+
+.addPlant_buttonContainer {
+  margin-top: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.addPlant_buttonContainer_submit, .addPlant_buttonContainer_quit {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.addPlant_buttonContainer_quit {
+  color: #030311;
+}
+
+@media (max-width: 450px) {
+  .addPlant_card {
+    margin: 0;
+    margin-left: -1rem;
+    width: calc(100vw - 1rem);
   }
 }
 /*# sourceMappingURL=style.css.map */

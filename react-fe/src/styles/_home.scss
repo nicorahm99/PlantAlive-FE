@@ -5,7 +5,7 @@
         align-items: center;
     }
     &_flotingActionButton{
-        color: $pa-accent;
+        color: $pa-grey;
         background-color: $pa-white;
         
         position: fixed;
@@ -24,7 +24,6 @@
         &:hover{
             background-color: darken($pa-white, 4%);
         }
-
         &:active{
             animation-name: clickRemovesShadow;
             animation-duration: 20ms;
