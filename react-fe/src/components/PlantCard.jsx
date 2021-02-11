@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import Icon from './Icon';
 import PropTypes from 'prop-types';
 import PlantCardLabel from './PlantCardLabel';
-import samplePlant from '../images/samplePlant.svg'
 import { baseUrl } from '../commons/fetches';
 
 
