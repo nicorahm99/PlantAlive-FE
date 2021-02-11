@@ -40,7 +40,8 @@ export default function Home() {
   }
   const renderPlantCard = (plant, index) => {
     return (<PlantCard 
-      key={index}
+      key={plant.id}
+      id={plant.id}
       src="../images/samplePlant.svg" 
       location={plant.location} 
       plantName={plant.name}

@@ -944,6 +944,9 @@ template {
   -ms-grid-row: 2;
       grid-row-start: 2;
   grid-row-end: 4;
+  background-image: url("../images/samplePlant.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .PlantCard_plantName {

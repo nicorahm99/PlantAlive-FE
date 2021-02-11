@@ -1,5 +1,5 @@
 import React from 'react'
-import { buildPostRequest } from '../commons/fetches';
+import { buildPostRequest, baseUrl } from '../commons/fetches';
 import AppNavigation from '../components/AppNavigation'
 import BasicButton from '../components/BasicButton';
 import AlertHint from '../components/AlertHint';
@@ -37,10 +37,23 @@ export default function NewPlant(props) {
         setImagePath(path)
     } 
 
+    const postImage = async (plantId) => {
+        var data = new FormData();
+        data.append("imageFile", image);
+        console.log(data);
+        const request = fetch(baseUrl + `/images/upload/${plantId}`, {
+            mode: 'no-cors',
+            method: "POST",
+            body: data
+          })
+        const response = await request
+        console.log(response)
+    }
+
     const fetchImage = async (url) => {
-        let response = await fetch(url)
-        let image = await response.blob()
-        let imagePath = URL.createObjectURL(image)
+        const response = await fetch(url)
+        const image = await response.blob()
+        const imagePath = URL.createObjectURL(image)
 
         console.log(imagePath)
 
@@ -80,17 +93,26 @@ export default function NewPlant(props) {
 
     const onSubmit = async () => {
         setAlertMessage(null)
-        if (validateForm()){
-            const userData = getUserDataFromStorage()
-            const request = buildPostRequest("/plants", {name: plantName, location, targetHumidity, ownerId: userData.id})
-            const response = await request()
-            if (response.status === 201){
-                history.push('/home')
+        try {
+            if (validateForm()){
+                const userData = getUserDataFromStorage()
+                const request = buildPostRequest("/plants", {name: plantName, location, targetHumidity, ownerId: userData.id})
+                const response = await request()
+
+
+                if (response.status === 201){
+                    const plantData = await response.json()
+                    postImage(plantData.id)
+                    history.push('/home')
+                } else {
+                    setAlertMessage("Da ist etwas schief gelaufen, bitte versuchen Sie es später erneut!")
+                }
             } else {
-                setAlertMessage("Da ist etwas schief gelaufen, bitte versuchen Sie es später erneut!")
+                setAlertMessage("Bitte prüfen Sie Ihre Eingaben")
             }
-        } else {
-            setAlertMessage("Bitte prüfen Sie Ihre Eingaben")
+        } catch {
+            setAlertMessage("Da ist etwas schief gelaufen, bitte versuchen Sie es später erneut oder kontaktieren Sie unseren Support!")
+            history.push('/home')
         }
         
     }

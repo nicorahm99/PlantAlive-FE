@@ -1,4 +1,7 @@
-export const baseUrl = 'http://localhost:8080';
+const os = require("os");
+const hostname = os.hostname();
+
+export const baseUrl = `http://${hostname}:8080`;
 
 export function buildGetRequest(url){
     const request = () => fetch(baseUrl + url, {
