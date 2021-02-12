@@ -6,9 +6,11 @@ import HumidityChanger from '../components/HumidityChanger';
 import Icon from '../components/Icon';
 import PlantDetailImage from '../components/PlantDetailImage';
 import PlantDetailInputs from '../components/PlantDetailInputs';
-import {buildGetRequest} from '../commons/fetches'
+import {buildGetRequest, fetchImage} from '../commons/fetches'
 
 export default function PlantDetail(props) {
+    const plantId = props.match.params.plantId; 
+
     const [currentHumidity, setCurrentHumidity] = React.useState(0);
 
     const [image, setImage] = React.useState();
@@ -32,15 +34,6 @@ export default function PlantDetail(props) {
         setImage(file);
         setImagePath(path)
     } 
-
-    const fetchImage = async (url) => {
-        let response = await fetch(url)
-        let image = await response.blob()
-        let imagePath = URL.createObjectURL(image)
-
-        setImage(image)
-        setImagePath(imagePath)
-    }
 
     const onPlantNameChange = (event) => {
         const value = event.target.value 
@@ -68,8 +61,8 @@ export default function PlantDetail(props) {
         setLocation(value)
     }
     
-    const fetchPlant = async () => {
-        const request = buildGetRequest(`/plants/${props.match.params.plantId}`)
+    const fetchPlant = async (id) => {
+        const request = buildGetRequest(`/plants/${id}`)
         const response = await request()
         if (response.status === 200){
             const body = await response.json()
@@ -83,8 +76,12 @@ export default function PlantDetail(props) {
     }
 
     React.useEffect(() => {
-        fetchPlant()
-        fetchImage('https://picsum.photos/200')
+        const fetchData = async () => {
+            fetchPlant(plantId)
+            setImage(await fetchImage(plantId))
+        }
+        
+        fetchData()
     // eslint-disable-next-line
     }, [])
 
@@ -94,7 +91,7 @@ export default function PlantDetail(props) {
             <div className='plantDetail_container'>
             <Card className='plantDetail_card'>
                 <div className='universal_flexRow'>
-                <PlantDetailImage imagePath={imagePath} onInputChange={onFileInputChange} />
+                <PlantDetailImage image={image} onInputChange={onFileInputChange} />
                 
                 <span className='plantDetail_plantName'>{plantName?plantName:'Pflanzenname'}</span>
                 </div>

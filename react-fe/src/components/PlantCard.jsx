@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Icon from './Icon';
 import PropTypes from 'prop-types';
 import PlantCardLabel from './PlantCardLabel';
-import { baseUrl } from '../commons/fetches';
+import { baseUrl, fetchImage } from '../commons/fetches';
 
 
 export default function PlantCard(props) {
@@ -11,19 +11,11 @@ export default function PlantCard(props) {
     const [image, setImage] = React.useState()
 
     useEffect(() => {
-        const fetchImage = async () => {
-            const response = await fetch(baseUrl + `/images/${props.id}`)
-            if (response.status === 200){
-                console.log(response)
-                const responseBody = await response.json()
-                const base64Data = responseBody.picByte;
-                const image = 'data:image/jpeg;base64,' + base64Data;
-
-                setImage(image)
-            }      
+        const fetchData = async () => {
+            setImage(await fetchImage(props.id))    
         }
 
-        fetchImage()
+        fetchData()
     }, [])
 
     return(

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 export default function PlantDetailImage(props){
     return(
     <div className='plantDetail_imageContainer'>
-        <img src={props.imagePath} className='plantDetail_imageContainer_image' alt='' />
+        <img src={props.image} className='plantDetail_imageContainer_image' alt='' />
 
         <input type='file' accept='image/png,jgp' id='imageUploader' className='plantDetail_imageContainer_input' onChange={props.onInputChange} />
         
