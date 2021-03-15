@@ -8,7 +8,7 @@ export default function PlantDetailImage(props){
     <div className='plantDetail_imageContainer'>
         <img src={props.image} className='plantDetail_imageContainer_image' alt='' />
 
-        <input type='file' accept='image/png,jgp' id='imageUploader' className='plantDetail_imageContainer_input' onChange={props.onInputChange} />
+        <input type='file' accept='image/jpeg' id='imageUploader' className='plantDetail_imageContainer_input' onChange={props.onInputChange} />
         
         <label htmlFor='imageUploader' className='plantDetail_imageContainer_label' >
             <Icon iconName='edit' />
@@ -18,6 +18,6 @@ export default function PlantDetailImage(props){
 }
 
 PlantDetailImage.propTypes = {
-    imagePath: PropTypes.string,
+    image: PropTypes.string,
     onInputChange: PropTypes.func,
 }

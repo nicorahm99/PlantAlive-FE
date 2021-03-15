@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Icon from './Icon';
 import PropTypes from 'prop-types';
 import PlantCardLabel from './PlantCardLabel';
-import { baseUrl, fetchImage } from '../commons/fetches';
+import { fetchImage } from '../commons/fetches';
 
 
 export default function PlantCard(props) {

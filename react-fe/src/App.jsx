@@ -6,6 +6,7 @@ import PlantDetail from './pages/plantDetail';
 import NewPlant from './pages/newPlant';
 
 function App() {
+
   return (
     <div className="App">
       <Router>

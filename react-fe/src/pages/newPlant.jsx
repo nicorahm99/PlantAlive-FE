@@ -1,5 +1,5 @@
-import React from 'react'
-import { buildPostRequest, baseUrl } from '../commons/fetches';
+import React, { useEffect } from 'react';
+import { buildGetRequest, buildPostRequest, postImage } from '../commons/fetches';
 import AppNavigation from '../components/AppNavigation'
 import BasicButton from '../components/BasicButton';
 import AlertHint from '../components/AlertHint';
@@ -13,7 +13,7 @@ export default function NewPlant(props) {
     const history = useHistory()
 
     const [image, setImage] = React.useState();
-    const [imagePath, setImagePath] = React.useState();
+    const [imageBase64, setImageBase64] = React.useState();
 
     const [plantName, setPlantName] = React.useState('');
     const [location, setLocation] = React.useState('');
@@ -26,39 +26,22 @@ export default function NewPlant(props) {
     const [locationHelperText, setLocationHelperText] = React.useState('')
 
     const [alertMessage, setAlertMessage] = React.useState(false)
+
+    const [availablePlants, setAvailablePlants] = React.useState([])
     
 
     const onFileInputChange = (e) => {
-        let file = e.target.files[0]
-
-        let path = URL.createObjectURL(file)
-        
+        let file = e.target.files[0]        
         setImage(file);
-        setImagePath(path)
+        saveFileToImageBase64(file);
     } 
 
-    const postImage = async (plantId) => {
-        var data = new FormData();
-        data.append("imageFile", image);
-        console.log(data);
-        const request = fetch(baseUrl + `/images/upload/${plantId}`, {
-            mode: 'no-cors',
-            method: "POST",
-            body: data
-          })
-        const response = await request
-        console.log(response)
-    }
-
-    const fetchImage = async (url) => {
-        const response = await fetch(url)
-        const image = await response.blob()
-        const imagePath = URL.createObjectURL(image)
-
-        console.log(imagePath)
-
-        setImage(image)
-        setImagePath(imagePath)
+    function saveFileToImageBase64(file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function () {
+            setImageBase64(reader.result);
+        };
     }
 
     const onPlantNameChange = (event) => {
@@ -101,8 +84,8 @@ export default function NewPlant(props) {
 
 
                 if (response.status === 201){
-                    const plantData = await response.json()
-                    postImage(plantData.id)
+                    const plantData = await response.json();
+                    if (image) postImage(plantData.id, image).catch(() => alert("Leider konnte das Bild konnte nicht hochgeladen werden.")) 
                     history.push('/home')
                 } else {
                     setAlertMessage("Da ist etwas schief gelaufen, bitte versuchen Sie es später erneut!")
@@ -117,17 +100,30 @@ export default function NewPlant(props) {
         
     }
 
-    React.useEffect(() => {
-        fetchImage('https://picsum.photos/200')
-    }, [])
+    const fetchAvailableTopics = async () => {
+        const request = buildGetRequest("/plants/available")
+        const response = await request()
+        if (response.status == 200){
+            const responseBody = await response.json()
+            setAvailablePlants(responseBody)
+            if (!responseBody[0]){
+                setAlertMessage("Leider konnten keine verfügbaren Töpfe gefunden werden. Stellen Sie sicher, dass der Topf mit dem WLAN und Stromnetz verbunden ist.")
+            }
+        } else {
+            setAlertMessage("Leider konnten die verfügbaren Töpfe nicht geladen werden.")
+        }
+    }
 
+    useEffect(() => {
+        fetchAvailableTopics()
+    }, [])
 
     return(
         <AppNavigation>
             <div className='universal_centeredContent addPlant_container'>
             <div className='addPlant_card'>
                 <div className='universal_flexRow'>
-                <PlantDetailImage imagePath={imagePath} onInputChange={onFileInputChange} />
+                <PlantDetailImage image={imageBase64} onInputChange={onFileInputChange} />
                 
                 <span className='plantDetail_plantName'>{plantName?plantName:'Pflanzenname'}</span>
                 </div>
@@ -147,7 +143,7 @@ export default function NewPlant(props) {
                     setValue={setTargetHumidity}
                 />
                 <div className="universal_flexRow addPlant_buttonContainer">
-                    <BasicButton className="button_quit addPlant_buttonContainer_quit">
+                    <BasicButton className="button_quit addPlant_buttonContainer_quit" onClick={() => history.push('/home')}>
                         Abbrechen
                     </BasicButton>
                     <BasicButton className="button_Accent addPlant_buttonContainer_submit" onClick={() => onSubmit()} >

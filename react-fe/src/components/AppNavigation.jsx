@@ -16,6 +16,7 @@ import Icon from '../components/Icon';
 import Background from '../components/Background';
 import { customTheme } from '../commons/theme';
 import {useHistory} from 'react-router-dom';
+import { logOut } from '../commons/utils';
 
 
 const drawerWidth = 240;
@@ -92,7 +93,7 @@ export default function AppNavigation(props) {
               <ListItemText primary='Einstellungen'/>
           </ListItem>
 
-          <ListItem button key='Ausloggen' onClick={() => history.push("/logout")} >
+          <ListItem button key='Ausloggen' onClick={() => logOut(history)} >
           <ListItemIcon><Icon iconName="exitToApp"/></ListItemIcon>
               <ListItemText primary='Ausloggen'/>
           </ListItem>
