@@ -12,7 +12,7 @@
     &_buttonContainer{
         margin-top: 1rem;
         justify-content: space-between;
-        &_submit, &_quit{
+        &_submit, &_quit, &_delete{
             margin-top: 1rem;
             font-size: 1.5rem;
             text-align: center;
@@ -20,6 +20,12 @@
         }
         &_quit{
             color: $pa-dark
+        }
+        &_delete{
+            color: #da1e37;
+            &:hover{
+                background-color: lighten(#da1e37,40);
+            }
         }
     }
 }

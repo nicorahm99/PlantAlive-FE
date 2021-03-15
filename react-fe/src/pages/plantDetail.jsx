@@ -8,7 +8,7 @@ import Icon from '../components/Icon';
 import AlertHint from '../components/AlertHint';
 import PlantDetailImage from '../components/PlantDetailImage';
 import PlantDetailInputs from '../components/PlantDetailInputs';
-import {buildGetRequest, fetchImage} from '../commons/fetches'
+import {buildGetRequest, deletePlant, fetchImage} from '../commons/fetches'
 import { buildPutRequest, putImage } from '../commons/fetches';
 import { useHistory } from 'react-router-dom';
 import { getUserDataFromStorage } from '../commons/utils';
@@ -125,7 +125,9 @@ export default function PlantDetail(props) {
     React.useEffect(() => {
         const fetchData = async () => {
             fetchPlant(plantId)
-            setImage(await fetchImage(plantId))
+            const plantImage = await fetchImage(plantId) 
+            setImage(plantImage)
+            setImageBase64(plantImage)
         }
         
         fetchData()
@@ -167,8 +169,13 @@ export default function PlantDetail(props) {
                     setValue={setTargetHumidity}
                 /> 
                 <div className="universal_flexRow addPlant_buttonContainer">
-                    <BasicButton className="button_quit addPlant_buttonContainer_quit" onClick={() => history.push('/home')}>
-                        Abbrechen
+                    <BasicButton className="button_delete addPlant_buttonContainer_delete" onClick={() => deletePlant(plantId)
+                    .then(
+                        () => {history.push("/home")}
+                    ).catch(
+                        () => setAlertMessage("Pflanze konnte nicht gelöscht werden.")
+                    )}>
+                        Löschen
                     </BasicButton>
                     <BasicButton className="button_Accent addPlant_buttonContainer_submit" onClick={() => onUpdate()} >
                         Aktualisieren

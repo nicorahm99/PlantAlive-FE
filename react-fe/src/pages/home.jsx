@@ -27,7 +27,7 @@ export default function Home() {
 
   const getContent = () => {
     if (plants === null){
-      return null
+      return (<h1 style={{color: "black"}}>Backend nicht gefunden ... 404</h1>)
     } else if (plants.length === 0){
       return (<WelcomeInsert name={userData.name} />)
     }
@@ -38,7 +38,7 @@ export default function Home() {
         })}
       </div>) 
   }
-  const renderPlantCard = (plant, index) => {
+  const renderPlantCard = (plant) => {
     return (<PlantCard 
       key={plant.id}
       id={plant.id}

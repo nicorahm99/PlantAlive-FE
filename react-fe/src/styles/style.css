@@ -1129,7 +1129,7 @@ template {
           justify-content: space-between;
 }
 
-.addPlant_buttonContainer_submit, .addPlant_buttonContainer_quit {
+.addPlant_buttonContainer_submit, .addPlant_buttonContainer_quit, .addPlant_buttonContainer_delete {
   margin-top: 1rem;
   font-size: 1.5rem;
   text-align: center;
@@ -1138,6 +1138,14 @@ template {
 
 .addPlant_buttonContainer_quit {
   color: #030311;
+}
+
+.addPlant_buttonContainer_delete {
+  color: #da1e37;
+}
+
+.addPlant_buttonContainer_delete:hover {
+  background-color: #f8ccd2;
 }
 
 @media (max-width: 450px) {

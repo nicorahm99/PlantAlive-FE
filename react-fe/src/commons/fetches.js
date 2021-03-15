@@ -82,3 +82,9 @@ export const uploadFile = (plantId, file) => {
   formData.append("imageFile", file);
   request.send(formData);
 };
+
+export const deletePlant = async (plantId) => {
+  return await fetch(baseUrl + `/plants/${plantId}`, {
+    method: 'DELETE',
+  });
+}
