@@ -8,6 +8,7 @@ import PlantDetailImage from '../components/PlantDetailImage';
 import PlantDetailInputs from '../components/PlantDetailInputs';
 import { useHistory } from 'react-router-dom';
 import { getUserDataFromStorage } from '../commons/utils';
+import DropDown from '../components/DropDown';
 
 export default function NewPlant(props) {
     const history = useHistory()
@@ -18,6 +19,7 @@ export default function NewPlant(props) {
     const [plantName, setPlantName] = React.useState('');
     const [location, setLocation] = React.useState('');
     const [targetHumidity, setTargetHumidity] = React.useState(0);
+    const [plantAdress, setPlantAdress] = React.useState();
 
     const [isPlantNameError, setisPlantNameError] = React.useState(false);
     const [isLocationError, setisLocationError] = React.useState(false);
@@ -103,7 +105,7 @@ export default function NewPlant(props) {
     const fetchAvailableTopics = async () => {
         const request = buildGetRequest("/plants/available")
         const response = await request()
-        if (response.status == 200){
+        if (response.status === 200){
             const responseBody = await response.json()
             setAvailablePlants(responseBody)
             if (!responseBody[0]){
@@ -116,6 +118,7 @@ export default function NewPlant(props) {
 
     useEffect(() => {
         fetchAvailableTopics()
+    // eslint-disable-next-line
     }, [])
 
     return(
@@ -127,6 +130,7 @@ export default function NewPlant(props) {
                 
                 <span className='plantDetail_plantName'>{plantName?plantName:'Pflanzenname'}</span>
                 </div>
+                <DropDown availablePlants={availablePlants} onChange={setPlantAdress}/>
                 <PlantDetailInputs 
                     isNameError={isPlantNameError}
                     name={plantName} 

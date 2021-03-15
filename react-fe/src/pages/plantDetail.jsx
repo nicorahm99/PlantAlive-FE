@@ -138,7 +138,7 @@ export default function PlantDetail(props) {
             <div className='plantDetail_container'>
             <Card className='plantDetail_card'>
                 <div className='universal_flexRow'>
-                <PlantDetailImage image={image} onInputChange={onFileInputChange} />
+                <PlantDetailImage image={imageBase64} onInputChange={onFileInputChange} />
                 
                 <span className='plantDetail_plantName'>{plantName?plantName:'Pflanzenname'}</span>
                 </div>

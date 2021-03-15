@@ -16,6 +16,7 @@ export default function PlantCard(props) {
         }
 
         fetchData()
+    // eslint-disable-next-line
     }, [])
 
     return(
