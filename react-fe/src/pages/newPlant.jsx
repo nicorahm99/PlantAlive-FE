@@ -81,7 +81,7 @@ export default function NewPlant(props) {
         try {
             if (validateForm()){
                 const userData = getUserDataFromStorage()
-                const request = buildPostRequest("/plants", {name: plantName, location, targetHumidity, ownerId: userData.id})
+                const request = buildPostRequest("/plants", {name: plantName, location, targetHumidity, ownerId: userData.id, topicName: plantAdress})
                 const response = await request()
 
 

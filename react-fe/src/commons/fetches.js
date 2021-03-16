@@ -53,18 +53,6 @@ export const postImage = async (plantId, image) => {
   return response;
 }
 
-export const putImage = async (plantId, image) => {
-  var data = new FormData();
-  data.append("imageFile", image);
-  const request = fetch(baseUrl + `/images/upload/${plantId}`, {
-      mode: 'no-cors',
-      method: "PUT",
-      body: data
-    })
-  const response = await request
-  return response;
-}
-
 
 export const uploadFile = (plantId, file) => {
   console.info("Uploading file...");

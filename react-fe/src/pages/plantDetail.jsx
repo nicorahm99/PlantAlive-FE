@@ -9,13 +9,12 @@ import AlertHint from '../components/AlertHint';
 import PlantDetailImage from '../components/PlantDetailImage';
 import PlantDetailInputs from '../components/PlantDetailInputs';
 import {buildGetRequest, deletePlant, fetchImage} from '../commons/fetches'
-import { buildPutRequest, putImage } from '../commons/fetches';
+import { buildPutRequest, postImage } from '../commons/fetches';
 import { useHistory } from 'react-router-dom';
 import { getUserDataFromStorage } from '../commons/utils';
 
 export default function PlantDetail(props) {
     const history = useHistory()
-
 
     const plantId = props.match.params.plantId; 
 
@@ -27,6 +26,7 @@ export default function PlantDetail(props) {
     const [plantName, setPlantName] = React.useState('');
     const [location, setLocation] = React.useState('');
     const [targetHumidity, setTargetHumidity] = React.useState(0);
+    const [fetchedPlant, setFetchedPlant] = React.useState({});
 
     const [isPlantNameError, setisPlantNameError] = React.useState(false);
     const [isLocationError, setisLocationError] = React.useState(false);
@@ -82,6 +82,8 @@ export default function PlantDetail(props) {
         const response = await request()
         if (response.status === 200){
             const body = await response.json()
+            setFetchedPlant(body)
+
             setPlantName(body.name)
             setLocation(body.location)
             setTargetHumidity(body.targetHumidity?body.targetHumidity:0)
@@ -99,13 +101,12 @@ export default function PlantDetail(props) {
         try {
             if (validateForm()){
                 const userData = getUserDataFromStorage()
-                const request = buildPutRequest("/plants", {id: plantId, name: plantName, location, targetHumidity, ownerId: userData.id})
+                const request = buildPutRequest("/plants", {id: plantId, name: plantName, location, targetHumidity, ownerId: userData.id, topicName: fetchedPlant.topicName})
                 const response = await request()
 
 
                 if (response.status === 201){
-                    const plantData = await response.json()
-                    putImage(plantData.id, image).catch(() => alert("Leider konnte das Bild konnte nicht hochgeladen werden.")) 
+                    if (image) postImage(plantId, image).catch(() => alert("Leider konnte das Bild konnte nicht hochgeladen werden.")) 
                     history.push('/home')
                 } else {
                     setAlertMessage("Da ist etwas schief gelaufen, bitte versuchen Sie es später erneut!")
