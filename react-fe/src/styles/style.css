@@ -930,8 +930,8 @@ template {
 }
 
 .PlantCard_frame_grid {
-  -ms-grid-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 2rem;
-      grid-template-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 2rem;
+  -ms-grid-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 5rem 1.5rem 1rem;
+      grid-template-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 5rem 1.5rem 1rem;
   -ms-grid-rows: 1rem 2rem 1rem 2rem 1rem;
       grid-template-rows: 1rem 2rem 1rem 2rem 1rem;
 }
@@ -981,10 +981,10 @@ template {
 }
 
 .PlantCard_editButton {
-  -ms-grid-row: 1;
-      grid-row-start: 1;
-  -ms-grid-column: 10;
-      grid-column-start: 10;
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  -ms-grid-column: 11;
+      grid-column-start: 11;
 }
 
 .PlantCard_plantCardLabel {
@@ -1048,6 +1048,10 @@ template {
     margin-top: -0.25rem;
     font-size: 2rem;
   }
+  .PlantCard_edit {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
   .PlantCard_locationContainer_text, .PlantCard_plantCardLabel_value {
     margin-top: 0.075rem;
   }
@@ -1083,6 +1087,8 @@ template {
         grid-column-start: 7;
     -ms-grid-row: 2;
         grid-row-start: 2;
+    -webkit-transform: translate(10rem);
+            transform: translate(10rem);
   }
   .PlantCard_locationContainer {
     -ms-grid-column: 4;
@@ -1099,12 +1105,12 @@ template {
   .PlantCard_plantCardLabelHumidity {
     -ms-grid-column: 2;
         grid-column-start: 2;
-    grid-column-end: 5;
+    grid-column-end: 7;
   }
   .PlantCard_plantCardLabelTemperature {
-    -ms-grid-column: 5;
-        grid-column-start: 5;
-    grid-column-end: 8;
+    -ms-grid-column: 7;
+        grid-column-start: 7;
+    grid-column-end: 9;
   }
   .PlantCard_locationContainer_text, .PlantCard_plantCardLabel_value {
     margin-top: 0.075rem;

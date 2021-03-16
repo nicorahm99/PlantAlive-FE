@@ -14,7 +14,7 @@
 
         font-size: 2rem;
         &_grid{
-            grid-template-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 2rem; // freespace IMG freespace freespace TITLE/HUMIDITY freespace LOCATION/TEMPERATURE EDIT freespace
+            grid-template-columns: 1rem 75px 1rem 0px 3fr 5px 1fr 3fr 1rem 5rem 1.5rem 1rem; // freespace IMG freespace freespace TITLE/HUMIDITY freespace LOCATION/TEMPERATURE EDIT freespace
             grid-template-rows: 1rem 2rem 1rem 2rem 1rem; // freespace row1 freespace row2 freespace    
         }
     }
@@ -50,8 +50,8 @@
         }
     }
     &_editButton{
-        grid-row-start: 1;
-        grid-column-start: 10;  
+        grid-row-start: 2;
+        grid-column-start: 11;  
     }
     &_plantCardLabel{
         display: flex;
@@ -101,6 +101,9 @@
             margin-top: -0.25rem;
             font-size: 2rem;
         }
+        &_edit{
+            transform: translate(0);
+        }
         &_locationContainer_text, &_plantCardLabel_value{
             margin-top: 0.075rem;
         }
@@ -133,6 +136,7 @@
         &_editButton{
             grid-column-start: 7;
             grid-row-start: 2;
+            transform: translate(10rem);
         }
         &_locationContainer{
             grid-column-start: 4;
@@ -144,11 +148,11 @@
             margin-right: 0.3rem;
             &Humidity{
                 grid-column-start: 2;
-                grid-column-end: 5;
+                grid-column-end: 7;
             }
             &Temperature{
-                grid-column-start: 5;
-                grid-column-end: 8;
+                grid-column-start: 7;
+                grid-column-end: 9;
             }
       
         }

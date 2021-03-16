@@ -47,6 +47,7 @@ export default function Home() {
       plantName={plant.name}
       humidity={plant.currentHumidity} 
       temperature={plant.temperature}
+      waterLevel={plant.waterLevel}
       onEdit={() => {
         history.push(`/detail/${plant.id}`)
       }}
