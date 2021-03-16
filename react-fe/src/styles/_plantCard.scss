@@ -137,6 +137,7 @@
             grid-column-start: 7;
             grid-row-start: 2;
             transform: translate(10rem);
+            z-index: 50;
         }
         &_locationContainer{
             grid-column-start: 4;

@@ -73,7 +73,7 @@ export default function NewPlant(props) {
     }
 
     const validateForm = () => {
-        return plantName && location && targetHumidity
+        return plantName && location && targetHumidity && plantAdress
     }
 
     const onSubmit = async () => {

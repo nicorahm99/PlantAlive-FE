@@ -65,7 +65,8 @@ export default function PlantCard(props) {
                 cornerRadius={2} 
                 colors={["#da1e37","#f9a620","#4F772D"]}
                 arcsLength={[2,3,7]}
-                percent={props.waterLevel?props.waterLevel/100:0}    
+                percent={props.waterLevel?props.waterLevel/100:0}   
+                animDelay={0}
             />
 
 
