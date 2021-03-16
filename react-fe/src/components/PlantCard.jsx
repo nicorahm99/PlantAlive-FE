@@ -41,7 +41,7 @@ PlantCard.propTypes = {
    src: PropTypes.string,
    location: PropTypes.string,
    plantName: PropTypes.string,
-   humidity: PropTypes.string,
-   temperature: PropTypes.string, 
+   humidity: PropTypes.number,
+   temperature: PropTypes.number, 
    onEdit: PropTypes.func,
 }

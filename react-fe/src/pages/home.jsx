@@ -45,8 +45,8 @@ export default function Home() {
       src="../images/samplePlant.svg" 
       location={plant.location} 
       plantName={plant.name}
-      humidity={plant.humidity?plant.humidity:"--"} 
-      temperature={plant.temperature?plant.temperature:"--"}
+      humidity={plant.currentHumidity} 
+      temperature={plant.temperature}
       onEdit={() => {
         history.push(`/detail/${plant.id}`)
       }}
